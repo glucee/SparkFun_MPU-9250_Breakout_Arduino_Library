@@ -24,9 +24,9 @@
  GND ---------------------- GND
  */
 
+#include <arduino.h>
 #include "quaternionFilters.h"
 #include "MPU9250.h"
-#define AHRS true         // Set to false for basic data read
 #define SerialDebug true  // Set to true to get Serial output for debugging
 
 // Pin definitions
@@ -206,49 +206,7 @@ void loop()
                          myIMU.gy * DEG_TO_RAD, myIMU.gz * DEG_TO_RAD, myIMU.my,
                          myIMU.mx, myIMU.mz, myIMU.deltat);
 
-  if (!AHRS)
-  {
-    myIMU.delt_t = millis() - myIMU.count;
-    if (myIMU.delt_t > 500)
-    {
-      if(SerialDebug)
-      {
-        // Print acceleration values in milligs!
-        Serial.print("X-acceleration: "); Serial.print(1000 * myIMU.ax);
-        Serial.print(" mg ");
-        Serial.print("Y-acceleration: "); Serial.print(1000 * myIMU.ay);
-        Serial.print(" mg ");
-        Serial.print("Z-acceleration: "); Serial.print(1000 * myIMU.az);
-        Serial.println(" mg ");
-
-        // Print gyro values in degree/sec
-        Serial.print("X-gyro rate: "); Serial.print(myIMU.gx, 3);
-        Serial.print(" degrees/sec ");
-        Serial.print("Y-gyro rate: "); Serial.print(myIMU.gy, 3);
-        Serial.print(" degrees/sec ");
-        Serial.print("Z-gyro rate: "); Serial.print(myIMU.gz, 3);
-        Serial.println(" degrees/sec");
-
-        // Print mag values in degree/sec
-        Serial.print("X-mag field: "); Serial.print(myIMU.mx);
-        Serial.print(" mG ");
-        Serial.print("Y-mag field: "); Serial.print(myIMU.my);
-        Serial.print(" mG ");
-        Serial.print("Z-mag field: "); Serial.print(myIMU.mz);
-        Serial.println(" mG");
-
-        myIMU.tempCount = myIMU.readTempData();  // Read the adc values
-        // Temperature in degrees Centigrade
-        myIMU.temperature = ((float) myIMU.tempCount) / 333.87 + 21.0;
-        // Print temperature in degrees Centigrade
-        Serial.print("Temperature is ");  Serial.print(myIMU.temperature, 1);
-        Serial.println(" degrees C");
-      }
-      myIMU.count = millis();
-      digitalWrite(myLed, !digitalRead(myLed));  // toggle led
-    } // if (myIMU.delt_t > 500)
-  } // if (!AHRS)
-  else
+  //AHRS true
   {
     // Serial print and/or display at 0.5 s rate independent of data rates
     myIMU.delt_t = millis() - myIMU.count;
