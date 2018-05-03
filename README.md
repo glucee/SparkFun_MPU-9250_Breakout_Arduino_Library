@@ -7,7 +7,7 @@ MPU-9250 9 DOF IMU Arduino Library
 
 This is an arduino IDE library to control the MPU-9250.
 
-This has been tested with Arduino Pro Mini.
+This has been tested with Arduino Pro Mini. 
 
 Repository Contents
 -------------------
@@ -44,12 +44,4 @@ Version History
 License Information
 -------------------
 
-This product is _**open source**_!
-
-Code is a lightly modified version of Kris Winer's [code](https://github.com/kriswiner/MPU-9250) which was licensed as Beerware. It's unclear the license of the code in quaternionFilters.ino.
-
-If you have any questions or concerns on licensing, please contact techsupport@sparkfun.com.
-
-Distributed as-is; no warranty is given.
-
-- Your friends at SparkFun.
+MIT
